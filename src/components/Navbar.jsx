@@ -3,39 +3,67 @@ import gsap, { Power3 } from "gsap";
 import { NavLink } from "react-router-dom";
 
 import { HiSearch } from "react-icons/hi";
+import { _config } from "gsap/gsap-core";
 
 const Navbar = () => {
-  let [height, setHeight] = useState(0);
-  let [searching, setSearching] = useState(false);
+  let openSearchBar = useRef(false);
   let searchForm = useRef(null);
   let formOpenbutton = useRef(null);
   let formInput = useRef(null);
-
-  let openForm = () => {
-    let tl = gsap.timeline();
-
-    tl.set(formOpenbutton, {
-      display: "none",
-    }).set(searchForm, {
-      display: "block",
-    }).fromTo(
-      searchForm,{
-        x: 200,
-        width: 0,
-        height: 0,
-      },
-      {
-        width: "100%",
-        height: "100%",
-        x: 0,
-        duration: 0.75,
-        ease: Power3.easeInOut,
-      });
-  };
+  let searchbar = useRef(null);
 
   useEffect(() => {
+    let tl = gsap.timeline();
+    let anim = tl
+      .set(formOpenbutton, {
+        display: "none",
+      })
+      .set(searchForm, {
+        display: "block",
+      })
+      .fromTo(
+        searchForm,
+        {
+          x: 80,
+          width: 0,
+          height: 0,
+          opacity: 0,
+        },
+        {
+          width: "100%",
+          height: "100%",
+          opacity: 1,
+          x: 0,
+          duration: 0.75,
+          ease: Power3.easeInOut,
+        }
+      );
+    anim.pause();
 
-  }, []);
+    let checkifSearchbarOpen = (e) => {
+      if (
+        !searchbar.contains(e.target) &&
+        openSearchBar.current == true &&
+        !formInput.value
+      ) {
+        console.log("Clicked outside of searchbar closing search bar");
+        anim.reverse();
+        openSearchBar.current = false;
+      } else if (
+        searchbar.contains(e.target) &&
+        openSearchBar.current == false
+      ) {
+        anim.play();
+        openSearchBar.current = true;
+      }
+    };
+
+    console.log("rendered");
+    document.body.addEventListener("click", checkifSearchbarOpen);
+    return () => {
+      document.body.removeEventListener("click", checkifSearchbarOpen);
+    };
+  });
 
   return (
     <>
@@ -46,25 +74,29 @@ const Navbar = () => {
           </NavLink>
         </div>
 
-        <div className="flex justify-center items-center p-2">
+        <div
+          className="flex justify-center items-center p-2"
+          ref={(el) => {
+            searchbar = el;
+          }}
+        >
           <button
             className="border-2 rounded-[100%] py-2 px-3"
             ref={(el) => {
               formOpenbutton = el;
             }}
-            onClick={openForm}
           >
             <HiSearch className="text-xl" />
           </button>
 
           <div
-            className="justify-center items-center overflow-hidden hidden"
+            className="justify-center items-center overflow-hidden hidden "
             ref={(el) => {
               searchForm = el;
             }}
           >
             <input
-              className="bg-slate-200 rounded-full px-4 py-1 text-gray-900 font-semibold tracking-wider selection:bg-neutral-900 selection:text-slate-100 outline-none "
+              className="bg-sky-200 rounded-full px-4 py-1 text-gray-900 font-semibold tracking-wider selection:bg-neutral-900 selection:text-slate-100 outline-none "
               type="text"
               placeholder="Search"
               ref={(el) => {

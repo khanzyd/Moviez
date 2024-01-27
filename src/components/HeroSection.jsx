@@ -1,20 +1,66 @@
-import React from "react";
-import {} from "react-router-dom";
+import React, { useEffect, useRef, useState } from "react";
+import { useLoaderData } from "react-router-dom";
+import GenreButton from "./GenreButton";
 
-import heroSectionBanner from "../assets/avengers-end-game.jpg";
 import { FaPlay } from "react-icons/fa";
+import { updateHeroMovieData } from "./heroSectionFuncs";
 
+export async function loader() {
+  const promise = await fetch(
+    "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1&region=US",
+    {
+      method: "GET",
+      headers: {
+        accept: "application/json",
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxMmM3YzgxODFiMjhjNWQ5NDM0YjY0NjJkMTNhMDc3ZSIsInN1YiI6IjY1YWZhNDZlNjdiNjEzMDEwYzYwYmQ2MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.7KVkBXGW5ZP4omCYMfLE53bO4fnMAQoUb-FZQbA8ajs",
+      },
+    }
+  );
+  const data = await promise.json();
+  return data;
+}
 
 const HeroSection = () => {
+  let [heroMovie, setHeroMovie] = useState(null);
+  let currentMovie = useRef(0);
+  let imgRef = useRef(null);
+
+
+  let movies = useLoaderData().results;
+  movies = movies.slice(0, 10);
+
+  function updateHeroMovie(current) {
+    updateHeroMovieData(movies[current]).then((data) => setHeroMovie(data));
+  }
+
+  useEffect(() => {
+    updateHeroMovie(currentMovie.current);
+
+    let interval = setInterval(() => {
+      if (currentMovie.current < 9) {
+        currentMovie.current = currentMovie.current + 1;
+      } else {
+        currentMovie.current = 0;
+      }
+      updateHeroMovie(currentMovie.current);
+    }, 5000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+
   return (
-    // shadow-[inset_550px_0px_190px_50px_#000000]
     <>
+      {console.log(heroMovie?.bannerImage)}
       <div className="hero-container h-full w-screen max-w-full bg-black">
         <div className="img-main absolute z-30 h-screen w-screen max-w-full">
           <img
-            src={heroSectionBanner}
+            src={`${heroMovie?.bannerImage}`}
             alt="hero background image"
             className="absolute z-10 h-full w-10/12 right-0 object-cover constrast-125 shadow-myshadow "
+            ref={(el) => imgRef = el}
           />
           <div className="absolute z-10 img-container h-full w-10/12 right-0 shadow-[inset_350px_0px_190px_50px_black]"></div>
         </div>
@@ -25,22 +71,15 @@ const HeroSection = () => {
           </span>
 
           <div className="h-56 w-[50%] mt-36 ">
-            <button className="rounded-full border-2 border-slate-100 px-3.5 py-1 mr-5 text-sm font-semibold">
-              Animation
-            </button>
-            <button className="rounded-full border-2 border-slate-100 px-3.5 py-1 text-sm font-semibold">
-              Sci-Fi
-            </button>
+            {heroMovie?.movieGenres.map((genre) => {
+              return <GenreButton key={genre.id} genre={genre} />;
+            })}
             <div className="h-auto py-6">
               <h2 className="text-6xl font-semibold">
-                spider-man : Across the spider verse
+                {heroMovie?.movieTittle}
               </h2>
               <p className="my-5 font-medium text tracking-wide">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam
-                nisi at esse voluptatibus sequi, itaque suscipit! Distinctio, ab
-                recusandae sapiente aut in natus sit necessitatibus esse.
-                Ducimus atque repellat at, culpa soluta dicta magni enim in
-                facilis eum perferendis incidunt natus quam mollitia qui?
+                {heroMovie?.movieOverview}
               </p>
               <button className="text-xl font-semibold border-2 border-transparent text-black bg-slate-100 rounded-full px-5 py-1 mr-7 hover:border-2 hover:text-slate-100 hover:bg-black hover:border-slate-100 inline-flex justify-center items-center">
                 <span>
