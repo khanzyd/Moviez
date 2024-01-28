@@ -67,7 +67,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="navbar z-50 h-28 w-full px-10 flex items-center justify-between text-slate-50 absolute ">
+      <div className="navbar z-50 h-28 w-full px-[5%] flex items-center justify-between text-slate-50 absolute ">
         <div>
           <NavLink className={"text-xl font-bold"} to="/">
             Home

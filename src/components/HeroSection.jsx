@@ -57,31 +57,35 @@ const HeroSection = () => {
   return (
     <>
       {console.log(heroMovie?.bannerImage)}
-      <div className="hero-container h-full w-screen max-w-full bg-red-500">
-        <div className="img-main absolute z-30 sm:h-screen w-screen max-w-full h-[65%]">
+      <div className="hero-container h-full  w-screen max-w-full bg-black">
+        <div className="img-main sm:absolute relative sm:z-30 sm:h-screen w-screen max-w-full h-[50%]">
           <img
             src={``}
             alt="hero background image"
-            className="imgCont absolute z-10  lg:w-10/12 sm:w-[90%] h-full w-full right-0 object-cover constrast-125 shadow-myshadow bg-center "
+            className="imgCont sm:absolute z-10  lg:w-10/12 sm:w-[90%] h-full w-full right-0 object-cover constrast-125 shadow-myshadow bg-center "
           />
-          <div className="absolute z-10 img-container h-full lg:w-10/12 sm:w-[90%] sm:shadow-[inset_250px_0px_190px_50px_black] w-full shadow-[inset_0px_-30px_32px_0px_black] right-0 lg:shadow-[inset_350px_0px_190px_50px_black] "></div>
-        </div>
-
-        <div className="relative z-40 h-[calc(100%-7rem)] top-28 px-10 pt-4  text-slate-100">
-          <span className="rounded-full text-red-600 border-2 border-slate-100 px-3.5 py-2 text-lg font-bold select-none">
+          <span className="sm:hidden visible absolute bottom-4 left-4 z-20 rounded-full text-red-600 border-2 border-slate-100 select-none font-semibold text-base px-2 py-[2px]">
             <span className="text-slate-100">#</span>Trending🔥
           </span>
 
-          <div className="hero-text 2xl:max-h-[50%] lg:w-[50%] sm:w-[45%] max-h-[65%] w-screen absolute top-[30%] overflow-y-scroll scrollbar-hide bg-sky-400">
+          <div className="absolute z-10 img-container sm:h-full lg:w-10/12 sm:w-[90%] sm:shadow-[inset_250px_0px_190px_50px_black] w-full shadow-[inset_0px_-50px_32px_0px_black] sm:right-0 lg:shadow-[inset_350px_0px_190px_50px_black] h-[100%] top-0"></div>
+        </div>
+
+        <div className="relative z-40 sm:h-[calc(100%-7rem)] sm:top-28 pl-[5%] h-[50%] text-slate-100 ">
+          <span className="hidden sm:inline-block rounded-full text-red-600 border-2 border-slate-100 sm:px-3 sm:py-2 sm:text-lg sm:font-bold select-none font-semibold text-base px-2 py-[3px]">
+            <span className="text-slate-100">#</span>Trending🔥
+          </span>
+
+          <div className="hero-text 2xl:max-h-[50%] lg:w-[50%] sm:w-[45%] sm:max-h-[65%] w-[90%] sm:absolute sm:top-[30%] py-5  overflow-y-scroll scrollbar-hide h-[90%]">
             {heroMovie?.movieGenres.map((genre) => {
               return <GenreButton key={genre.id} genre={genre} />;
             })}
-            <div className="h-auto py-6 ">
+            <div className="h-auto py-2 ">
               <h2 className="hero-text lg:text-6xl sm:text-4xl text-3xl font-semibold">
                 {heroMovie?.movieTittle}
               </h2>
               <div className="">
-                <p className="hero-text my-5 lg:font-medium font-normal lg:text-base text-sm  tracking-wide">
+                <p className="hero-text my-5 lg:font-medium font-normal lg:text-base text-sm tracking-wide">
                   {heroMovie?.movieOverview}
                 </p>
               </div>
