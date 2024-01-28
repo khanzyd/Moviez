@@ -1,3 +1,5 @@
+import gsap, { Power3 } from "gsap";
+
 export async function generateGenreList() {
   const url = "https://api.themoviedb.org/3/genre/movie/list?language=en";
   const options = {
@@ -30,4 +32,26 @@ export async function updateHeroMovieData(movie) {
     movieOverview: movie.overview,
     movieGenres,
   };
+}
+
+export function heroRevealAnimation(newSrc) {
+  let tl = gsap.timeline();
+  tl.seek(0);
+  gsap.from(".hero-text", {
+    delay: 0.5,
+    xPercent: -5,
+    opacity: 0,
+    duration: 1,
+    stagger: 0.3,
+    ease: Power3.easeInOut,
+  });
+
+  tl.to(".imgCont", {
+    opacity: 0,
+    attr: { src: newSrc },
+  }).to(".imgCont", {
+    opacity: 1,
+    duration: 1,
+    ease: Power3.easeInOut,
+  });
 }

@@ -24,17 +24,17 @@ const Navbar = () => {
       .fromTo(
         searchForm,
         {
-          x: 80,
+          xPercent: 10,
           width: 0,
           height: 0,
           opacity: 0,
         },
         {
-          width: "100%",
+          width: "20vw",
           height: "100%",
           opacity: 1,
-          x: 0,
-          duration: 0.75,
+          xPercent: 0,
+          duration: 0.6,
           ease: Power3.easeInOut,
         }
       );
@@ -67,7 +67,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="navbar z-50 h-28 w-full px-10 flex items-center justify-between text-slate-50 absolute">
+      <div className="navbar z-50 h-28 w-full px-10 flex items-center justify-between text-slate-50 absolute ">
         <div>
           <NavLink className={"text-xl font-bold"} to="/">
             Home
@@ -96,7 +96,7 @@ const Navbar = () => {
             }}
           >
             <input
-              className="bg-sky-200 rounded-full px-4 py-1 text-gray-900 font-semibold tracking-wider selection:bg-neutral-900 selection:text-slate-100 outline-none "
+              className="bg-sky-200 rounded-full px-4 py-1 text-gray-900 font-semibold tracking-wider selection:bg-neutral-900 w-full selection:text-slate-100 outline-none "
               type="text"
               placeholder="Search"
               ref={(el) => {
