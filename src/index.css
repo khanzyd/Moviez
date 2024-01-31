@@ -22,3 +22,13 @@ body #root {
   height: 100%;
   width: 100%;
 }
+
+
+#root .cardsContainerWrapper::-webkit-scrollbar {
+  height: 8px;
+}
+
+#root .cardsContainerWrapper::-webkit-scrollbar-thumb {
+  background-color: rgb(151, 151, 151);
+  border-radius: 10px;
+}

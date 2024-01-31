@@ -1,5 +1,28 @@
 import gsap, { Power3 } from "gsap";
 
+export let homePageCardsData = [
+  {
+    Genre: null,
+    url: "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1&region=IN",
+    category: "Top Rated Movies",
+  },
+  // {
+  //   Genre: "action",
+  //   url: "https://api.themoviedb.org/3/discover/movie?api_key=###&with_genres=28",
+  //   category: "Action",
+  // },
+  // {
+  //   Genre: "crime",
+  //   url: "https://api.themoviedb.org/3/discover/movie?api_key=###&with_genres=80",
+  //   category: "Crime",
+  // },
+  {
+    Genre: "comedy",
+    url: "https://api.themoviedb.org/3/discover/movie?api_key=###&with_genres=35",
+    category: "Comedy",
+  },
+];
+
 export async function generateGenreList() {
   const url = "https://api.themoviedb.org/3/genre/movie/list?language=en";
   const options = {
@@ -16,7 +39,7 @@ export async function generateGenreList() {
   return genreList.genres;
 }
 
-export async function updateHeroMovieData(movie) {
+export async function constructMovieData(movie) {
   let genreList = await generateGenreList();
   let movieGenres = movie.genre_ids.map((id) => {
     return genreList.find((genre) => {
