@@ -46,7 +46,7 @@ const Navbar = () => {
         openSearchBar.current == true &&
         !formInput.value
       ) {
-        console.log("Clicked outside of searchbar closing search bar");
+        // console.log("Clicked outside of searchbar closing search bar");
         anim.reverse();
         openSearchBar.current = false;
       } else if (
@@ -58,7 +58,7 @@ const Navbar = () => {
       }
     };
 
-    console.log("rendered");
+    // console.log("rendered");
     document.body.addEventListener("click", checkifSearchbarOpen);
     return () => {
       document.body.removeEventListener("click", checkifSearchbarOpen);

@@ -6,16 +6,16 @@ export let homePageCardsData = [
     url: "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1&region=IN",
     category: "Top Rated Movies",
   },
-  // {
-  //   Genre: "action",
-  //   url: "https://api.themoviedb.org/3/discover/movie?api_key=###&with_genres=28",
-  //   category: "Action",
-  // },
-  // {
-  //   Genre: "crime",
-  //   url: "https://api.themoviedb.org/3/discover/movie?api_key=###&with_genres=80",
-  //   category: "Crime",
-  // },
+  {
+    Genre: null,
+    url: "https://api.themoviedb.org/3/trending/all/day?language=en-US",
+    category: "Trending",
+  },
+  {
+    Genre: "action",
+    url: "https://api.themoviedb.org/3/discover/movie?api_key=###&with_genres=28",
+    category: "Action",
+  },
   {
     Genre: "comedy",
     url: "https://api.themoviedb.org/3/discover/movie?api_key=###&with_genres=35",
@@ -24,6 +24,7 @@ export let homePageCardsData = [
 ];
 
 export async function generateGenreList() {
+  // console.log("generation of genre list");
   const url = "https://api.themoviedb.org/3/genre/movie/list?language=en";
   const options = {
     method: "GET",
@@ -38,11 +39,12 @@ export async function generateGenreList() {
   let genreList = await res.json();
   return genreList.genres;
 }
+let genreList = await generateGenreList();
 
 export async function constructMovieData(movie) {
-  let genreList = await generateGenreList();
+  let allGenrelist = genreList; 
   let movieGenres = movie.genre_ids.map((id) => {
-    return genreList.find((genre) => {
+    return allGenrelist.find((genre) => {
       return genre.id == id;
     });
   });
