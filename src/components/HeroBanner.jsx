@@ -5,11 +5,9 @@ import GenreButton from "./GenreButton";
 import {
   constructMovieData,
   heroRevealAnimation,
-} from "./heroSectionFuncs";
+} from "../utils/heroSectionFuncs";
 
-
-const HeroBanner = ({movies}) => {
-
+const HeroBanner = ({ movies }) => {
   let [heroMovie, setHeroMovie] = useState(null);
   let currentMovie = useRef(0);
 
@@ -39,23 +37,22 @@ const HeroBanner = ({movies}) => {
     };
   }, []);
 
-  
   return (
     <div className="hero-container h-full  w-screen max-w-full bg-black">
-      <div className="img-main sm:absolute relative sm:z-30 sm:h-screen w-screen max-w-full h-[50%]">
+      <div className="img-main sm:absolute relative sm:z-30 sm:h-screen w-screen max-w-full h-[60%]">
         <img
           src={``}
           alt="hero background image"
-          className="imgCont sm:absolute z-10  lg:w-10/12 sm:w-[90%] h-full w-full right-0 object-cover constrast-125 shadow-myshadow bg-center "
+          className="imgCont sm:absolute z-10  lg:w-10/12 sm:w-[85%] h-full w-full right-0 object-cover constrast-125 shadow-myshadow bg-center "
         />
         <span className="sm:hidden visible absolute bottom-4 left-[7%] z-20 rounded-full text-red-600 border-2 border-slate-100 select-none font-semibold text-base px-2 py-[2px]">
           <span className="text-slate-100">#</span>Trending🔥
         </span>
 
-        <div className="absolute z-10 img-container sm:h-full lg:w-10/12 sm:w-[90%] sm:shadow-[inset_250px_-150px_190px_50px_black] w-full shadow-[inset_0px_-50px_32px_0px_black] sm:right-0 lg:shadow-[inset_350px_-150px_190px_50px_black] h-[100%] top-0"></div>
+        <div className="absolute z-10 img-container sm:h-full lg:w-10/12 sm:w-[85%] sm:shadow-[inset_250px_-150px_190px_50px_black] w-full shadow-[inset_0px_-50px_32px_0px_black] sm:right-0 lg:shadow-[inset_350px_-150px_190px_50px_black] h-[100%] bottom-0"></div>
       </div>
 
-      <div className="relative z-40 sm:h-[calc(100%-7rem)] sm:top-28 pl-[7%] h-[50%] text-slate-100 ">
+      <div className="relative z-40 sm:h-[calc(100%-7rem)] sm:top-28 pl-[7%] h-[40%] text-slate-100 ">
         <span className="hidden sm:inline-block rounded-full text-red-600 border-2 border-slate-100 sm:px-3 sm:py-2 sm:text-lg sm:font-bold select-none font-semibold text-base px-2 py-[3px]">
           <span className="text-slate-100">#</span>Trending🔥
         </span>

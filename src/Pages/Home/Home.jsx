@@ -1,12 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import { useLoaderData } from "react-router-dom";
 
-import { homePageCardsData } from "./heroSectionFuncs";
-import MovieCategorySection from "./MovieCategorySection";
-import HeroBanner from "./HeroBanner";
+import { homePageCardsData } from "../../utils/heroSectionFuncs";
+import MovieCategorySection from "../../components/MovieCategorySection";
+import HeroBanner from "../../components/HeroBanner";
 
 export async function loader() {
-
   const options = {
     method: "GET",
     headers: {
@@ -26,33 +25,29 @@ export async function loader() {
   return data;
 }
 
-const HeroSection = () => {
+const Home = () => {
   let collectedData = useLoaderData();
-  let movies = collectedData.results;
 
   return (
     <>
-    {/* {console.log(heroMovie)} */}
-      <HeroBanner movies={movies}/>
+      <HeroBanner movies={collectedData.results} />
 
-      <div className="h-auto relative bg-black sm:py-7">
+      <div className="h-auto relative bg-black sm:py-7 py-3">
         <div className="w-full flex flex-col flex-grow ">
-          {homePageCardsData.map((section)=>{
-            return <MovieCategorySection
-            key={section.category}
-            url={
-              section.url
-            }
-            category={section.category}
-            genre={section.Genre? section.Genre:null}
-          />
+          {homePageCardsData.map((section) => {
+            return (
+              <MovieCategorySection
+                key={section.category}
+                url={section.url}
+                category={section.category}
+                genre={section.Genre ? section.Genre : null}
+              />
+            );
           })}
-          {/* <MovieCategorySection />
-            <MovieCategorySection /> */}
         </div>
       </div>
     </>
   );
 };
 
-export default HeroSection;
+export default Home;

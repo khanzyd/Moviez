@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 
-import { constructMovieData } from "./heroSectionFuncs";
+import { constructMovieData } from "../utils/heroSectionFuncs";
 import MovieCard from "./MovieCard";
 
 const MovieCategorySection = ({ url, category }) => {
-
-  let [moviesData, setMoviesData] = useState()
+  let [moviesData, setMoviesData] = useState();
 
   async function fetchMovies(URL) {
     // "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1&region=IN",
@@ -23,28 +22,27 @@ const MovieCategorySection = ({ url, category }) => {
 
   let generateMoviesList = async (fetchedMovies) => {
     let data = await Promise.all(
-      fetchedMovies.results?.map(async(movie)=>{
-        return await constructMovieData(movie)
+      fetchedMovies.results?.map(async (movie) => {
+        return await constructMovieData(movie);
       })
-    )
+    );
     return data;
-  }
-  
+  };
+
   useEffect(() => {
     // console.log("running section useEffect");
     fetchMovies(url).then((data) => {
-      generateMoviesList(data).then((movies)=>{
+      generateMoviesList(data).then((movies) => {
         setMoviesData(movies);
-      })
+      });
     });
   }, []);
 
-  
   return (
     <>
       {/* {console.log(moviesData)} */}
-      <div className="h-full px-[7%] py-4 ">
-        <h3 className="text-3xl font-extrabold text-slate-100 border-t-2 my-4 pt-5">
+      <div className="h-full px-[7%] pb-1 ">
+        <h3 className="md:text-3xl sm:text-2xl text-xl font-extrabold text-slate-100 xl:mt-8 md:mt-6 mt-3 mb-3">
           {category ? category : "Movies"}
         </h3>
 

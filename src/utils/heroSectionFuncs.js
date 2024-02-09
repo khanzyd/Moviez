@@ -42,7 +42,7 @@ export async function generateGenreList() {
 let genreList = await generateGenreList();
 
 export async function constructMovieData(movie) {
-  let allGenrelist = genreList; 
+  let allGenrelist = genreList;
   let movieGenres = movie.genre_ids.map((id) => {
     return allGenrelist.find((genre) => {
       return genre.id == id;
@@ -80,25 +80,3 @@ export function heroRevealAnimation(newSrc) {
     ease: Power3.easeInOut,
   });
 }
-
-
-// let t = gsap.timeline()
-
-// export function showCardData(target) {
-//   console.log("enterd");
-//   gsap.to(target, {
-//     backdropFilter: "blur(5px)",
-//     bottom: "0",
-//     top: "0",
-//     duration: 0.4,
-//   });
-// };
-
-// export function hideCardData(target) {
-//   console.log("leaving");
-//   gsap.to(target, {
-//     // bottom: "-100%",
-//     top:"100%",
-//     duration: 0.1,
-//   });
-// };

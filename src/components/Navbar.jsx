@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import gsap, { Power3 } from "gsap";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 import { HiSearch } from "react-icons/hi";
-import { _config } from "gsap/gsap-core";
+// import { _config } from "gsap/gsap-core";
 
 const Navbar = () => {
   let openSearchBar = useRef(false);
@@ -11,9 +11,17 @@ const Navbar = () => {
   let formOpenbutton = useRef(null);
   let formInput = useRef(null);
   let searchbar = useRef(null);
+  let location = useLocation();
+
+  useEffect(()=>{
+    if(!(location.pathname == "/")){
+      
+    }
+  },[location])
 
   useEffect(() => {
-    let tl = gsap.timeline();
+    console.log(location);
+    let tl = gsap.timeline({paused:true});
     let anim = tl
       .set(formOpenbutton, {
         display: "none",
@@ -38,7 +46,6 @@ const Navbar = () => {
           ease: Power3.easeInOut,
         }
       );
-    anim.pause();
 
     let checkifSearchbarOpen = (e) => {
       if (
@@ -67,7 +74,10 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="navbar z-50 h-28 w-full px-[7%] flex items-center justify-between text-slate-50 absolute ">
+      {/* `navbar z-50 h-28 w-full px-[7%] flex items-center justify-between text-slate-50 absolute` */}
+      <div
+        className={"navbar z-50 h-28 w-full px-[7%] flex items-center justify-between text-slate-50 " + (!(location.pathname == "/")? "" : "absolute")}
+      >
         <div>
           <NavLink className={"text-xl font-bold"} to="/">
             Home
