@@ -32,7 +32,7 @@ const Home = () => {
     <>
       <HeroBanner movies={collectedData.results} />
 
-      <div className="h-auto relative bg-black sm:py-7 py-3">
+      <div className="h-auto relative bg-zinc-950 sm:py-7 py-3">
         <div className="w-full flex flex-col flex-grow ">
           {homePageCardsData.map((section) => {
             return (

@@ -3,11 +3,6 @@ import gsap, { Power3 } from "gsap";
 export let homePageCardsData = [
   {
     Genre: null,
-    url: "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1&region=IN",
-    category: "Top Rated Movies",
-  },
-  {
-    Genre: null,
     url: "https://api.themoviedb.org/3/trending/all/day?language=en-US",
     category: "Trending",
   },
@@ -15,6 +10,11 @@ export let homePageCardsData = [
     Genre: "action",
     url: "https://api.themoviedb.org/3/discover/movie?api_key=###&with_genres=28",
     category: "Action",
+  },
+  {
+    Genre: null,
+    url: "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1&region=IN",
+    category: "Top Rated Movies",
   },
   {
     Genre: "comedy",

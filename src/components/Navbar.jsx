@@ -12,18 +12,22 @@ const Navbar = () => {
   let formInput = useRef(null);
   let searchbar = useRef(null);
   let location = useLocation();
-
-  useEffect(()=>{
-    if(!(location.pathname == "/")){
-      
-    }
-  },[location])
-
+  
+  let handleSubmit = (e) => {
+    e.preventDefault();
+    
+    console.log(formInput.value);
+    formInput.value = "";
+  };
+  
   useEffect(() => {
-    console.log(location);
-    let tl = gsap.timeline({paused:true});
+    window.scrollTo(0, 0);
+  }, [location]);
+  
+  useEffect(() => {
+    let tl = gsap.timeline({ paused: true });
     let anim = tl
-      .set(formOpenbutton, {
+    .set(formOpenbutton, {
         display: "none",
       })
       .set(searchForm, {
@@ -38,7 +42,7 @@ const Navbar = () => {
           opacity: 0,
         },
         {
-          width: "20vw",
+          width: "100%",
           height: "100%",
           opacity: 1,
           xPercent: 0,
@@ -68,6 +72,7 @@ const Navbar = () => {
     // console.log("rendered");
     document.body.addEventListener("click", checkifSearchbarOpen);
     return () => {
+      anim.revert();
       document.body.removeEventListener("click", checkifSearchbarOpen);
     };
   });
@@ -76,7 +81,10 @@ const Navbar = () => {
     <>
       {/* `navbar z-50 h-28 w-full px-[7%] flex items-center justify-between text-slate-50 absolute` */}
       <div
-        className={"navbar z-50 h-28 w-full px-[7%] flex items-center justify-between text-slate-50 " + (!(location.pathname == "/")? "" : "absolute")}
+        className={
+          "navbar z-50 h-28 w-full px-[7%] flex items-center justify-between text-slate-50 " +
+          (!(location.pathname == "/") ? "bg-zinc-500" : "absolute")
+        }
       >
         <div>
           <NavLink className={"text-xl font-bold"} to="/">
@@ -85,7 +93,7 @@ const Navbar = () => {
         </div>
 
         <div
-          className="flex justify-center items-center p-2"
+          className="flex justify-end items-center p-1 bg-red-600 w-[40%] "
           ref={(el) => {
             searchbar = el;
           }}
@@ -105,14 +113,18 @@ const Navbar = () => {
               searchForm = el;
             }}
           >
-            <input
-              className="bg-sky-200 rounded-full px-4 py-1 text-gray-900 font-semibold tracking-wider selection:bg-neutral-900 w-full selection:text-slate-100 outline-none "
-              type="text"
-              placeholder="Search"
-              ref={(el) => {
-                formInput = el;
-              }}
-            />
+            <form onSubmit={(e)=>{
+              handleSubmit(e)
+            }}>
+              <input
+                className="bg-sky-200 rounded-full px-4 py-1 text-gray-900 font-semibold tracking-wider selection:bg-neutral-900 w-full selection:text-slate-100 outline-none "
+                type="text"
+                placeholder="Search"
+                ref={(el) => {
+                  formInput = el;
+                }}
+              />
+            </form>
           </div>
         </div>
       </div>

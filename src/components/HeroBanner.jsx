@@ -50,6 +50,7 @@ const HeroBanner = ({ movies }) => {
         </span>
 
         <div className="absolute z-10 img-container sm:h-full lg:w-10/12 sm:w-[85%] sm:shadow-[inset_250px_-150px_190px_50px_black] w-full shadow-[inset_0px_-50px_32px_0px_black] sm:right-0 lg:shadow-[inset_350px_-150px_190px_50px_black] h-[100%] bottom-0"></div>
+        <div className="absolute top-0 left-0 z-10 w-full h-screen shadow-[0px_23px_30px_13px_black]"></div>
       </div>
 
       <div className="relative z-40 sm:h-[calc(100%-7rem)] sm:top-28 pl-[7%] h-[40%] text-slate-100 ">

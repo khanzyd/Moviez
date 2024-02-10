@@ -7,7 +7,7 @@ const Layout = () => {
     // <div className="h-full w-full">
     <>
       <Navbar />
-      <main className="h-full w-full">
+      <main className="h-screen w-full">
         <Outlet />
       </main>
     </>

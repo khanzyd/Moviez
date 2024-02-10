@@ -41,7 +41,7 @@ const MovieCategorySection = ({ url, category }) => {
   return (
     <>
       {/* {console.log(moviesData)} */}
-      <div className="h-full px-[7%] pb-1 ">
+      <div className="h-full px-[7%] pb-1 sm:pt-2 pt-8 ">
         <h3 className="md:text-3xl sm:text-2xl text-xl font-extrabold text-slate-100 xl:mt-8 md:mt-6 mt-3 mb-3">
           {category ? category : "Movies"}
         </h3>
