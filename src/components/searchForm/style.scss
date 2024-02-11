@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.searchButton {
+  @apply bg-slate-950 border-4 border-slate-100 rounded-full p-2 text-2xl font-bold;
+}
+
+.searchForm {
+  .searchInput {
+    @apply px-4 py-1 rounded-full bg-slate-100 text-gray-900 font-semibold text-lg tracking-wider selection:bg-neutral-900 selection:text-slate-100 outline-none;
+  }
+
+  &.active {
+    .searchInput {
+      animation: open 1s cubic-bezier(0.19, 1, 0.22, 1);
+      width: 100%;
+      float: right;
+    }
+  }
+}
+
+.active {
+  .searchInput {
+    animation: open 2s cubic-bezier(0.19, 1, 0.22, 1);
+    width: 100%;
+    float: right;
+  }
+}
+
+@keyframes open {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}

@@ -3,7 +3,7 @@ import { useLoaderData, useParams } from 'react-router-dom'
 import fetchData from '../../utils/fetchMovies'
 
 export async function loader({params}) {
-  return await fetchData(`movie/${params.movieId}`)
+  return await fetchData(`movie/${params.movieId}`,null)
 }
 
 const MovieDetail = () => {

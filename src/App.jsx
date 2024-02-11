@@ -11,9 +11,11 @@ import Home from "./Pages/Home/Home";
 import MovieDetail from "./Pages/movieDetail/MovieDetail";
 
 function App() {
+  // ?query=wonka&include_adult=false&language=en-US&page=1'
   const allRoutes = createRoutesFromElements(
     <Route path="/" element={<Layout />}>
       <Route index element={<Home />} loader={heroBannerLoader} />
+      <Route path="search/movie" />
       <Route
         path="explore/:movieId"
         loader={movieDetailLoader}

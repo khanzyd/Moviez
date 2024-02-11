@@ -1,7 +1,11 @@
-export default async function fetchData(_url) {
-  // "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1&region=IN",
+export default async function fetchData(_url,_PARAMS) {
+  let url = `https://api.themoviedb.org/3/${_url}`;
+  if(_PARAMS){
+    url = `${url}${_PARAMS}`
+  }
+
   const res = await fetch(
-    `https://api.themoviedb.org/3/${_url}`,
+    url,
     {
       method: "GET",
       headers: {
@@ -14,3 +18,5 @@ export default async function fetchData(_url) {
   const data = await res.json();
   return data;
 }
+
+    // "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1&region=IN",

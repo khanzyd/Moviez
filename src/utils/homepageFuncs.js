@@ -1,24 +1,28 @@
 import gsap, { Power3 } from "gsap";
 
-export let homePageCardsData = [
+export let homepageCarouselInfo = [
   {
     Genre: null,
-    url: "https://api.themoviedb.org/3/trending/all/day?language=en-US",
+    url: "trending/all/day",
+    params: "?language=en-US",
     category: "Trending",
   },
   {
     Genre: "action",
-    url: "https://api.themoviedb.org/3/discover/movie?api_key=###&with_genres=28",
+    url: "discover/movie",
+    params: "?api_key=###&with_genres=28",
     category: "Action",
   },
   {
     Genre: null,
-    url: "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1&region=IN",
+    url: "movie/top_rated",
+    params: "?language=en-US&page=1&region=IN",
     category: "Top Rated Movies",
   },
   {
     Genre: "comedy",
-    url: "https://api.themoviedb.org/3/discover/movie?api_key=###&with_genres=35",
+    url: "discover/movie",
+    params: "?api_key=###&with_genres=35",
     category: "Comedy",
   },
 ];

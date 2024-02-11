@@ -1,9 +1,13 @@
 import React from "react";
 import { useLoaderData } from "react-router-dom";
-
-import { homePageCardsData } from "../../utils/heroSectionFuncs";
+import fetchData from "../../utils/fetchMovies"
+import { homepageCarouselInfo } from "../../utils/homepageFuncs";
 import MovieCategorySection from "../../components/MovieCategorySection";
 import HeroBanner from "../../components/HeroBanner";
+import Carousel from "../../components/carousel/carousel";
+
+
+
 
 export async function loader() {
   const options = {
@@ -32,8 +36,10 @@ const Home = () => {
     <>
       <HeroBanner movies={collectedData.results} />
 
-      <div className="h-auto relative bg-zinc-950 sm:py-7 py-3">
-        <div className="w-full flex flex-col flex-grow ">
+      <div className="h-auto relative bg-red-950 sm:py-9 py-3">
+        <Carousel />
+
+        {/* <div className="w-full flex flex-col flex-grow ">
           {homePageCardsData.map((section) => {
             return (
               <MovieCategorySection
@@ -44,7 +50,7 @@ const Home = () => {
               />
             );
           })}
-        </div>
+        </div> */}
       </div>
     </>
   );
