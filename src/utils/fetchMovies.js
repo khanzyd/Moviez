@@ -1,7 +1,7 @@
-export default async function fetchData(_url,_PARAMS) {
+export default async function fetchMovies(_url,_PARAMS) {
   let url = `https://api.themoviedb.org/3/${_url}`;
   if(_PARAMS){
-    url = `${url}${_PARAMS}`
+    url = `${url}?${_PARAMS}`
   }
 
   const res = await fetch(

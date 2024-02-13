@@ -1,0 +1,24 @@
+.movieCardWrapper {
+  .movieCard {
+    @apply relative w-full rounded-lg mb-1 overflow-hidden bg-transparent;
+    z-index: 4;
+
+    .cardInfoWrapper {
+      @apply px-3 py-2 absolute bottom-[-100%] w-full h-full bg-[#000000a4] backdrop-blur flex flex-col justify-center overflow-y-scroll scrollbar-hide;
+    }
+
+    &:hover {
+      @apply border-[3px] border-red-600;
+
+      .cardInfoWrapper {
+        bottom: 0;
+        transition: bottom 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+      }
+
+      img {
+        transform: scale(1.2);
+        transition: all 1s cubic-bezier(0.19, 1, 0.22, 1);
+      }
+    }
+  }
+}

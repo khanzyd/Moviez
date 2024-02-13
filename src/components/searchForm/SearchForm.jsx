@@ -2,10 +2,11 @@ import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom"; 
 import { HiSearch } from "react-icons/hi";
 import "./style.scss";
+import fetchMovies from "../../utils/fetchMovies";
 
 const SearchForm = () => {
   let [searching, setSearching] = useState(false);
-  let [query, setQuery] = useState('');
+  let [searchString, setsearchString] = useState('');
   let searchInput = useRef(null)
   let searchButton = useRef(null)
 
@@ -20,21 +21,10 @@ const SearchForm = () => {
   }
 
   let handleSubmit = async (e) => {
-      const options = {
-        method: "GET",
-        headers: {
-          accept: "application/json",
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxMmM3YzgxODFiMjhjNWQ5NDM0YjY0NjJkMTNhMDc3ZSIsInN1YiI6IjY1YWZhNDZlNjdiNjEzMDEwYzYwYmQ2MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.7KVkBXGW5ZP4omCYMfLE53bO4fnMAQoUb-FZQbA8ajs",
-        },
-      };
     e.preventDefault();
-    console.log(query);
-    let res = await fetch(`https://api.themoviedb.org/3/search/movie?query=${query}&include_adult=false&language=en-US&page=1`,options)
-    // navigate('/explore/')
-    let data = await res.json()
-    console.log(data);
-    setQuery('')
+    navigate(`search/${searchString}`)
+    console.log("setting query");
+    setsearchString('')
   }
 
   useEffect(()=>{
@@ -70,8 +60,8 @@ const SearchForm = () => {
           className="searchInput"
           placeholder="Search"
           ref={el => searchInput=el}
-          value={query}
-          onChange={(e)=>{setQuery(e.target.value)}}
+          value={searchString}
+          onChange={(e)=>{setsearchString(e.target.value)}}
         />
       </form>
     </>

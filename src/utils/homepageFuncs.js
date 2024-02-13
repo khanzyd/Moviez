@@ -4,13 +4,13 @@ export let homepageCarouselInfo = [
   {
     Genre: null,
     url: "trending/all/day",
-    params: "?language=en-US",
+    params: "language=en-US",
     category: "Trending",
   },
   {
     Genre: "action",
     url: "discover/movie",
-    params: "?api_key=###&with_genres=28",
+    params: "api_key=12c7c8181b28c5d9434b6462d13a077e&with_genres=28",
     category: "Action",
   },
   {
@@ -22,7 +22,7 @@ export let homepageCarouselInfo = [
   {
     Genre: "comedy",
     url: "discover/movie",
-    params: "?api_key=###&with_genres=35",
+    params: "?api_key=12c7c8181b28c5d9434b6462d13a077e&with_genres=35",
     category: "Comedy",
   },
 ];

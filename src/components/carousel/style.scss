@@ -2,6 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
-.carousel{
-    @apply bg-red-600 h-screen w-screen
+.carousel {
+  @apply bg-red-600 h-screen w-screen;
+}
+
+.cardsContainerWrapper {
+  &::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+      background-color: rgb(185, 185, 185);
+      border-radius: 10px;
+      
+      &:hover {
+        background-color: rgb(134, 134, 134);
+    }
+  }
+
+  
 }
