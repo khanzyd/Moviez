@@ -54,12 +54,13 @@ export async function constructMovieData(movie) {
   });
 
   return {
-    movieId: movie.id,
-    movieTittle: movie.title,
+    id: movie.id,
+    type: movie.media_type,
+    tittle: movie.title || movie.name ,
     bannerImage: `https://image.tmdb.org/t/p/original${movie.backdrop_path}`,
     posterImage: `https://image.tmdb.org/t/p/original${movie.poster_path}`,
-    movieOverview: movie.overview,
-    movieGenres,
+    overview: movie.overview,
+    genres: movieGenres,
   };
 }
 

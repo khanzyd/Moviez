@@ -16,7 +16,7 @@ function App() {
       <Route index element={<Home/>} loader={heroBannerLoader} />
       <Route path="search/:movie" element={<SearchResult/>} loader={searchResultLoader}/>
       <Route
-        path="explore/:movieId"
+        path=":type/:id"
         loader={movieDetailLoader}
         element={<MovieDetail/>}
       />

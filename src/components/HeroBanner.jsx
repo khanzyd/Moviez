@@ -59,7 +59,7 @@ const HeroBanner = ({ movies }) => {
         </span>
 
         <div className="hero-text 2xl:max-h-[50%] lg:w-[50%] sm:w-[45%] sm:max-h-[65%] w-[90%] sm:absolute sm:top-[30%] py-5  overflow-y-scroll scrollbar-hide h-[90%]">
-          {heroMovie?.movieGenres.map((genre) => {
+          {heroMovie?.genres.map((genre) => {
             if (genre) {
               return <GenreButton key={genre.id} genre={genre} />;
             } else {
@@ -68,11 +68,11 @@ const HeroBanner = ({ movies }) => {
           })}
           <div className="h-auto py-2 pl-3">
             <h2 className="hero-text lg:text-6xl sm:text-4xl text-2xl font-semibold">
-              {heroMovie?.movieTittle}
+              {heroMovie?.tittle}
             </h2>
             <div className="">
               <p className="hero-text sm:my-5 lg:font-medium font-normal lg:text-base text-sm tracking-wide my-2">
-                {heroMovie?.movieOverview}
+                {heroMovie?.overview}
               </p>
             </div>
             <div className="hero-text">

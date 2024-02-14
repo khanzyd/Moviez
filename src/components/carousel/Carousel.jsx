@@ -18,6 +18,7 @@ const carousel = ({ url, params, category }) => {
 
   useEffect(() => {
     fetchMovies(url, params).then((data) => {
+      console.log(data);
       generateMoviesList(data).then((movies) => {
         setCarouselMovies(movies);
       });
@@ -30,10 +31,10 @@ const carousel = ({ url, params, category }) => {
         <h3 className="md:text-3xl sm:text-2xl text-xl font-extrabold text-slate-100 xl:mt-8 md:mt-6 mt-3 mb-3">
           {category}
         </h3>
-        <div className="cardsContainerWrapper w-full overflow-x-scroll bg-lime-500">
+        <div className="cardsContainerWrapper w-full overflow-x-scroll">
           <div className="cardContainer flex pt-8 pb-4 min-h-60 ">
             {carouselMovies?.map((movie) => {
-              return <MovieCard key={movie.movieId} movie={movie} />;
+              return <MovieCard key={movie.id} movie={movie} />;
             })}
           </div>
         </div>
